@@ -7,7 +7,8 @@ package feistel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.io.*;
+import java.util.Scanner;
 /**
  *
  * @author jhercules
@@ -18,6 +19,21 @@ public class Feistel {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+    }
+    
+    public String ReadFromFile(String FileName, String Encoding)throws IOException {
+        StringBuilder text = new StringBuilder();
+        String NL = System.getProperty("line.separator");
+        Scanner scanner = new Scanner(new FileInputStream(FileName), Encoding);
+        try {
+          while (scanner.hasNextLine()){
+            text.append(scanner.nextLine() + NL);
+          }
+        }
+        finally{
+          scanner.close();
+        }
+        return text.toString();
     }
     
     public String textoplano(String texto,String clave,boolean cifrado){
